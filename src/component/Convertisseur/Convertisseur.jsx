@@ -66,12 +66,21 @@ export const Convertisseur = () =>{
                 <h1> = </h1>
             </div>
             <div>
-                <span>{result.toString() + " " + converters[to].name + units[unit].title + (result > 1 ? "s" : "")}</span>
+                <span>{result.toString() + " " + (converters[to].id !== 0 ? converters[to].name: "") + units[unit].title + (result > 1 ? "s" : "")}</span>
                 <select onChange={e => setTo(parseInt(e.target.value))}>
                     {converters.map(converter => <option key={converter.id} value={converter.id}>{converter.name}</option>)}
                 </select>
             </div>
             <button onClick={e => calcule()}>Calculer</button>
+            <button onClick={
+                ()=> {
+                    setEntry(0);
+                    setFrom(0);
+                    setTo(0);
+                    setResult("");
+                    setUnit(0);
+                }
+            }>Reset</button>
         </div>
     )
 }
